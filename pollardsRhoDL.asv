@@ -20,13 +20,7 @@ function ret = pollardsRhoDL(g, alpha, N , orderOfN)
 
     function initVals(order1, order2)
         aI = max(1, min(subOrder - 1, order1));  bI = max(1, min(subOrder - 1, order2)); 
-        xI = mod(modularExponentiation(g,aI,N) * modularExponentiation(alpha,bI,N),N);
-        aJ = aI; bJ = bI; xJ = xI;
-    end
-
-    function initRandVals()
-        aI = mod(floor(rand(1)*N), N-1) + 1;  bI = mod(floor(rand(1)*N), N-1) + 1; 
-        xI = mod(modularExponentiation(g,aI,N) * modularExponentiation(alpha,bI,N),N);
+        xI = mod(modularExponentiation(g,aI,subOrder) * modularExponentiation(alpha,bI, subOrder),subOrder);
         aJ = aI; bJ = bI; xJ = xI;
     end
     initVals(0, 0);
@@ -35,6 +29,7 @@ function ret = pollardsRhoDL(g, alpha, N , orderOfN)
     
     while 1
         [xI, aI, bI] = F(xI, aI, bI);
+        fprintf('%d %d %d\n' , xI, aI, bI);
         % Make two steps
         [xJ, aJ, bJ] = F(xJ, aJ, bJ);
         [xJ, aJ, bJ] = F(xJ, aJ, bJ);
@@ -42,25 +37,32 @@ function ret = pollardsRhoDL(g, alpha, N , orderOfN)
         if xI == xJ
             if bI == bJ
                 % Reinitialize variables
-                initRandVals();
-                %initVals(mod(floor(rand() * subOrder), subOrder),mod(floor(rand() * subOrder), subOrder));
+                fprintf('reinitializing!\n');
+                initVals(mod(floor(rand() * N), N));
             else
                 r = mod(bI - bJ, subOrder);
                 
-                inverse = findInverse(r, subOrder);               
+                fprintf('found diff - %d \n' , r);
+                
+                inverse = findInverse(r, subOrder);
                 if inverse == -1
-                   initRandVals();
+                   initVals(mod(floor(rand() * subOrder), subOrder),mod(floor(rand() * subOrder), subOrder));
                    continue;
                 end
                 ret = mod(inverse * (aJ - aI), subOrder);
                 
+                fprintf('found ans - %d \n' , ret);
+                
+                %ret = mod(inverse * (aJ - aI), N);
+               
                 if ret == 0
-                    initRandVals();
-                    continue;
+                    initVals(mod(floor(rand() * subOrder), subOrder),mod(floor(rand() * subOrder), subOrder));
+                    fprintf('Ans nerastas!\n');
+                    return;
                 end
+                %fprintf('radau ans!\n');
                 return ;
             end
-            
         end
     end
 end

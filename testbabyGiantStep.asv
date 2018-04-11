@@ -11,7 +11,7 @@ for i=1:N-1
 end
 
 if table.Count < N - 1
-   fprintf('"generator" is not a generator!\n'); 
+   fprintf('"generator" is not generator!\n'); 
    return;
 end
 
@@ -36,10 +36,10 @@ for i=1:TESTS
     ansPollardsRhoDL = pollardsRhoDL(generator, publicKey, N, N-1);
     exectimePRDL = toc;
     
-    if ansNaive ~= ansBGS || ansNaive ~= randVal || ansNaive ~= ansPollardsRhoDL
-       fprintf('Answers differ! %d vs %d vs %d \n', ansNaive, ansBGS, ansPollardsRhoDL);
+    if ansNaive ~= ansBGS || ansNaive ~= randVal || ansNaive ~= randVal
+       fprintf('Answers differ! %d vs %d vs %d \n', ansNaive, ansBGS, );
        break;
     else
-       fprintf('OK! x = %d, execution time: %d vs %d vs %d  \n', ansNaive, execTimeNaive, execTimeBGS, exectimePRDL); 
+       fprintf('OK! x = %d, execution time: %d vs %d vs %d  \n', ansNaive, execTimeNaive, execTimeBGS); 
     end
 end
