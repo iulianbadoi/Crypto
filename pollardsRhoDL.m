@@ -6,8 +6,7 @@ function ret = pollardsRhoDL(g, alpha, N , orderOfN)
         % x - current "main" value considered
         % a, b - current value of a and b in g^a*alpha^b = x
         if mod(x,3) == 1
-            x_i = mod(alpha * x, N);
-            e1 = mod(a, subOrder);            
+            x_i = mod(alpha * x, N);    
             e2 = mod(b+1, subOrder);            
         elseif mod(x, 3) == 0
             x_i = mod(x * x, N);
