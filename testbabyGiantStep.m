@@ -11,7 +11,7 @@ for i=1:N-1
 end
 
 if table.Count < N - 1
-   fprintf('"generator" is not generator!\n'); 
+   fprintf('"generator" is not a generator!\n'); 
    return;
 end
 
@@ -20,7 +20,7 @@ for i=1:TESTS
     execTimeBGS   = 0; % execution time using BGS
     execTimePRDL =  0; % execution time using Pollard's rho algorithm
     
-    randVal   = floor(rand() * N);
+    randVal   = mod(floor(rand() * N), N);
     fprintf('Testing on %d \n', randVal);
     publicKey = modularExponentiation(generator,randVal,N);
     
@@ -32,10 +32,14 @@ for i=1:TESTS
     ansBGS    = babyGiantStep(generator,publicKey,N);
     execTimeBGS = toc;
     
-    if ansNaive ~= ansBGS || ansNaive ~= randVal
-       fprintf('Answers differ! %d vs %d vs %d \n', ansNaive, ansBGS);
+    tic
+    ansPollardsRhoDL = pollardsRhoDL(generator, publicKey, N, N-1);
+    exectimePRDL = toc;
+    
+    if ansNaive ~= ansBGS || ansNaive ~= randVal || ansNaive ~= ansPollardsRhoDL
+       fprintf('Answers differ! %d vs %d vs %d \n', ansNaive, ansBGS, ansPollardsRhoDL);
        break;
     else
-       fprintf('OK! x = %d, execution time: %d vs %d vs %d  \n', ansNaive, execTimeNaive, execTimeBGS); 
+       fprintf('OK! x = %d, execution time: %d vs %d vs %d  \n', ansNaive, execTimeNaive, execTimeBGS, exectimePRDL); 
     end
 end
