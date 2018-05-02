@@ -31,7 +31,7 @@ legend('2 * x - y^2 - 1 = 0', '9 - 0.8 * x^2 - 2 * y = 0');
 % 
 
 % startying point
-X = [1, 1];
+X = [0.5, 0];
 plot(X(1), X(2), 'r*');
 
 EPS = 1e-8;
@@ -71,10 +71,10 @@ for i = 1:20
     [gradGX, gradGY] = grad_g1(X);
     [gradGX2, gradGY2] = grad_g2(X);
     
-    norm1 = max(1,100*norm(grad_f(X)));
-    norm2 = max(1,100*norm(grad_g1(X)));
-    norm3 = max(1,100*norm(grad_g2(X)));
-    norm4 = max(1,100*norm([x(2),x(3)]));
+    norm1 = max(1,1*norm(grad_f(X)));
+    norm2 = max(1,1*norm(grad_g1(X)));
+    norm3 = max(1,1*norm(grad_g2(X)));
+    norm4 = max(1,1*norm([x(2),x(3)]));
 
     if i == DISPLAY_ITER
         quiver(X(1), X(2), gradFX / norm1, gradFY / norm1, 'r');

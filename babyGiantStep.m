@@ -25,6 +25,9 @@ function ret = babyGiantStep(g, alpha, N)
         if isKey(table, finalVal)
             babyStepI = table(finalVal);
             ret = babyStepI + j * m;
+            if(ret == 0)
+               ret = N - 1; 
+            end
             return;
         end
         prevVal = mod(prevVal * inverseEl, N);
