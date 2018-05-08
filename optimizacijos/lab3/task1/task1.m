@@ -35,14 +35,14 @@ X = [1, 1];
 plot(X(1), X(2), 'r*');
 
 EPS = 1e-8;
-STEP = 0.0000005;
+STEP = 0.005;
 
 
 % Move right until some boundary is hit
 
 %
 
-DISPLAY_ITER = 10;
+DISPLAY_ITER = 6;
 str =strcat('Zoutendijko algoritmo eiga, iteracija =  ', int2str(DISPLAY_ITER));
 title(str);
 for i = 1:20
@@ -73,10 +73,10 @@ for i = 1:20
     [gradGX, gradGY] = grad_g1(X);
     [gradGX2, gradGY2] = grad_g2(X);
     
-    norm1 = max(1,100*norm(grad_f(X)));
-    norm2 = max(1,100*norm(grad_g1(X)));
-    norm3 = max(1,100*norm(grad_g2(X)));
-    norm4 = max(1,100*norm([x(2),x(3)]));
+    norm1 = max(1,10*norm(grad_f(X)));
+    norm2 = max(1,10*norm(grad_g1(X)));
+    norm3 = max(1,10*norm(grad_g2(X)));
+    norm4 = max(1,10*norm([x(2),x(3)]));
 
     if i == DISPLAY_ITER
         quiver(X(1), X(2), gradFX / norm1, gradFY / norm1, 'r');
@@ -109,5 +109,6 @@ end
 
 legend('2 * x - y^2 - 1 = 0', '9 - 0.8 * x^2 - 2 * y = 0');
 xlabel('x');
+X
 ylabel('y');
 zz = (X(1) - 3)^2 + (X(2) - 3)^2

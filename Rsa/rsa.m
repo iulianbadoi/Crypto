@@ -2,7 +2,7 @@ base_p_1 = sym(257);
 base_p_2 = sym(509);
 
 p = sym(257^3); % Siuo atveju ne pirminis, bet faktorizuoti lengva
-q = sym(509);
+q = sym(509^4);
 
 n = sym(p * q);
 e = sym(65537);
@@ -15,7 +15,7 @@ if mod(d * e, oiler_pq) ~= 1
    return;
 end
  
-message = sym(50);
+message = sym(12345678901234567);
 
 encrypted_message = mod_exp(message, e, n); % sifrograma
 decrypted_message = mod_exp(encrypted_message, d, n)

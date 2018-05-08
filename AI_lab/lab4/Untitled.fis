@@ -1,0 +1,66 @@
+[System]
+Name='Untitled'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=17
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='Taskai'
+Range=[0 50]
+NumMFs=4
+MF1='Mažas':'zmf',[0 5]
+MF2='Vidutinis':'trapmf',[8.571 11.43 17.14 21.43]
+MF3='Aukštas':'trapmf',[17.14 25.71 28.57 34.29]
+MF4='Labai_aukštas':'smf',[28.57 71.43]
+
+[Input2]
+Name='Perdavimai'
+Range=[0 20]
+NumMFs=3
+MF1='Žemas':'zmf',[0 2]
+MF2='Vidutinis':'trapmf',[2 3 5 7]
+MF3='Aukštas':'smf',[5 20]
+
+[Input3]
+Name='Atkovoti_kamuoliai'
+Range=[0 15]
+NumMFs=4
+MF1='Labai_mažas':'zmf',[0 2]
+MF2='Mažas':'trapmf',[2 3 3 4]
+MF3='Vidutinis':'trapmf',[4 5 6 7]
+MF4='Aukštas':'smf',[5 15]
+
+[Output1]
+Name='output1'
+Range=[0 45]
+NumMFs=4
+MF1='Mažas':'zmf',[0 5]
+MF2='Vidutinis':'trapmf',[1.8452380952381 7 10 15]
+MF3='Aukštas':'trapmf',[10.1785714285714 20 28 35]
+MF4='Labai_aukštas':'smf',[25.9 35]
+
+[Rules]
+2 2 2, 1 (1) : 1
+2 2 3, 1 (1) : 1
+2 3 2, 1 (1) : 1
+3 2 2, 1 (1) : 1
+2 2 4, 2 (1) : 1
+2 3 4, 3 (1) : 1
+4 3 4, 4 (1) : 1
+4 2 4, 4 (1) : 1
+4 1 4, 2 (1) : 1
+4 1 2, 1 (1) : 1
+4 1 3, 2 (1) : 1
+1 1 3, 3 (1) : 1
+4 1 3, 2 (1) : 1
+4 3 3, 2 (1) : 1
+4 3 1, 3 (1) : 1
+4 3 3, 1 (1) : 1
+4 1 3, 2 (1) : 1
