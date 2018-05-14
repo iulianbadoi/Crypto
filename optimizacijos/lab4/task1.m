@@ -35,7 +35,7 @@ y_min = -500; y_max = 500;
 
 % Iterate while most demaged function is more than EPS
 EPS = 1e-5;
-f = [-1; -1];
+f = [1; 1];
 A =  [];
 b = [];
 lb = [-5; -5];
@@ -46,6 +46,19 @@ ITER = 6;
 str =strcat('Cutting plane algoritmo eiga, kai iteracija = ', int2str(ITER));
 title(str)
 oldpnt=X;
+polygon_x = [10
+             10
+          -10
+          -10];
+polygon_y = [10
+             -10
+             10
+             -10];
+hull = convhull(polygon_x, polygon_y);
+plot(hull);
+
+return;
+         
 for i = 1:500
     [x,fval,exitflag,output,lambda] = linprog(f,A,b,[],[],lb,ub);
     x
