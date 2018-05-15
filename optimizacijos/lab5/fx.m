@@ -1,4 +1,6 @@
 function [ res ] = fx(x)
-    res = x^2 + 1 - x^3 + x^4/12 + mod(x, 12) - 7*mod(x^3,12);
+    res = -x;
+    return;
+    res = 10 + (1 / ( (x-0.16)^2 + 0.1))*sin(x);
 end
 
