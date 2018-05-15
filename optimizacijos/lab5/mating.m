@@ -1,5 +1,7 @@
-function mated_chroms = mating(chroms, degree)
+function mated_chroms = mating(chroms, degree, dim)
     [pop_cnt, bit_cnt] = size(chroms);
+    
+    pop_cnt = pop_cnt / dim;
     
     mated_chroms = chroms;
     
@@ -12,15 +14,17 @@ function mated_chroms = mating(chroms, degree)
         mates = [mates; rand_chrom_id];
     end
     
-    for i = 1:2:mate_cnt
-       change_pos = max(1, round(bit_cnt * rand));
-       
-       mate_1 = chroms(mates(i), :);
-       mate_2 = chroms(mates(i + 1), :);
-       
-       [mated_1, mated_2] = mate_2_(mate_1, mate_2, change_pos);
-       
-       mated_chroms(i, :) = mated_1;
-       mated_chroms(i + 1, :) = mated_2;
+   for i = 1:2:mate_cnt
+       for d = 1:dim
+           change_pos = max(1, round(bit_cnt * rand));
+
+           mate_1 = chroms((mates( i ) - 1) *  dim + d, :);
+           mate_2 = chroms((mates( i+1) - 1) * dim + d, :);
+
+           [mated_1, mated_2] = mate_2_(mate_1, mate_2, change_pos);
+
+           mated_chroms( (i - 1) * dim + d, :) = mated_1;
+           mated_chroms( (i + 1 - 1) * dim + d, :) = mated_2;
+       end
    end
 end

@@ -1,0 +1,1 @@
+knapsack_capacity = 100; % Bulvem
