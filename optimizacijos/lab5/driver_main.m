@@ -1,9 +1,9 @@
-L_B = 0.001;
-U_B = 0.3;
+L_B = -4;
+U_B = 4;
 
 BIT_CNT = 10;
 POP_CNT = 50;
-GENS_CNT = 100;
+GENS_CNT = 1000;
 MUTATE_DEG = 0.05;
 MATE_DEG = 0.6;
 
