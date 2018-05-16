@@ -5,7 +5,7 @@ function population = gen_population(bit_len, individ_cnt, dim)
         for d = 1:dim
             chrom = [];
             for j = 1:bit_len 
-                chrom = [chrom randi([0 1])];
+                chrom = [chrom round(rand)];
             end
             population = [population; chrom];
         end
